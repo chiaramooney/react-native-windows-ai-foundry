@@ -46,5 +46,16 @@
       "namespace": "rnWindowsAIFoundrySample",
       "template": "cpp-app"
     }
+  },
+  "codegenConfig": {
+    "name": "rnWindowsAIFoundrySample",
+    "type": "modules",
+    "jsSrcsDir": "src",
+    "windows": {
+      "namespace": "rnWindowsAIFoundrySampleCodegen",
+      "cppStringType": "std::string",
+      "separateDataTypes": false,
+      "outputDirectory": "codegen"
+    }
   }
 }

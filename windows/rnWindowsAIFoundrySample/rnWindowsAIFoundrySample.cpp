@@ -3,10 +3,23 @@
 
 #include "pch.h"
 #include "rnWindowsAIFoundrySample.h"
+#include <../../../codegen/NativeWindowsAIApisModuleSpec.g.h>
 
 #include "AutolinkedNativeModules.g.h"
 
 #include "NativeModules.h"
+
+REACT_MODULE(WindowsAIApisModule);
+struct WindowsAIApisModule
+{
+    using ModuleSpec = rnWindowsAIFoundrySampleCodegen::WindowsAIApisModuleSpec;
+
+    REACT_METHOD(GetPhiSilicaResponse, L"getPhiSilicaResponse");
+    void GetPhiSilicaResponse(std::string prompt, React::ReactPromise<std::string> response) noexcept
+    {
+      return response.Resolve("Hello");
+    }
+};
 
 // A PackageProvider containing any turbo modules you define within this app project
 struct CompReactPackageProvider

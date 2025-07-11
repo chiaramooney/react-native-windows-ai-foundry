@@ -48,10 +48,13 @@
     </ResourceCompile>
   </ItemGroup>
   <ItemGroup>
-    <Image Include="small.ico">
+    <Image Include="rnWindowsAIFoundrySample.ico">
       <Filter>Resource Files</Filter>
     </Image>
-    <Image Include="rnWindowsAIFoundrySample.ico">
+    <Image Include="logo.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="small.ico">
       <Filter>Resource Files</Filter>
     </Image>
   </ItemGroup>

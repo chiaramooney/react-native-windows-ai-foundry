@@ -3,21 +3,45 @@
 
 #include "pch.h"
 #include "rnWindowsAIFoundrySample.h"
+//#include "winrt/Microsoft.Windows.AI.Generative.h" // Add Windows AI API Header File
 #include <../../../codegen/NativeWindowsAIApisModuleSpec.g.h>
+#include "winrt/Windows.UI.h"
 
 #include "AutolinkedNativeModules.g.h"
 
 #include "NativeModules.h"
 
+//using namespace winrt::Microsoft::Windows::AI::Generative;
+
+// Native Module for Windows AI APIs
 REACT_MODULE(WindowsAIApisModule);
 struct WindowsAIApisModule
 {
     using ModuleSpec = rnWindowsAIFoundrySampleCodegen::WindowsAIApisModuleSpec;
 
+    // Method to Retrieve Phi Silica Response
     REACT_METHOD(GetPhiSilicaResponse, L"getPhiSilicaResponse");
     void GetPhiSilicaResponse(std::string prompt, React::ReactPromise<std::string> response) noexcept
     {
-      return response.Resolve("Hello");
+        response.Resolve("Test Result");
+        // Check if Model is Available Locally. If not, install.
+        /*if (!LanguageModel::IsAvailable()) {
+            auto op = LanguageModel::MakeAvailableAsync();
+            op.Completed([response, prompt](auto asyncInfo, winrt::Windows::Foundation::AsyncStatus asyncStatus) {
+                response.Resolve("Phi Silica model has been downloaded. Please reboot your machine to complete installation.");
+                });
+        }
+        else {
+            auto createAsync = LanguageModel::CreateAsync();
+            createAsync.Completed([createAsync, response, prompt](auto asyncInfo, winrt::Windows::Foundation::AsyncStatus asyncStatus) {
+                auto languageModel = createAsync.get();
+                auto responseAsync = languageModel.GenerateResponseAsync(winrt::to_hstring(prompt));
+                responseAsync.Completed([responseAsync, response](auto asyncInfo, winrt::Windows::Foundation::AsyncStatus asyncStatus) {
+                    auto result = responseAsync.get().Response();
+                    response.Resolve(winrt::to_string(result));
+                    });
+                });
+        }*/
     }
 };
 
@@ -83,8 +107,10 @@ _Use_decl_annotations_ int CALLBACK WinMain(HINSTANCE instance, HINSTANCE, PSTR 
 
   // Get the AppWindow so we can configure its initial title and size
   auto appWindow{reactNativeWin32App.AppWindow()};
-  appWindow.Title(L"rnWindowsAIFoundrySample");
+  appWindow.Title(L"Windows AI Foundry Sample");
   appWindow.Resize({1000, 1000});
+  appWindow.SetTitleBarIcon(L"logo.ico");
+
 
   // Get the ReactViewOptions so we can set the initial RN component to load
   auto viewOptions{reactNativeWin32App.ReactViewOptions()};

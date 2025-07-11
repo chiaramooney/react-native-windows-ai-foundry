@@ -20,7 +20,8 @@
       See https://microsoft.github.io/react-native-windows/docs/nuget
     -->
     <UseExperimentalNuget>true</UseExperimentalNuget>
-
+    <!-- RNW 0.79.0 uses WinUI3 1.7 by default, mut use ExperimentalWinUI3 version to access Windows AI APIs-->
+    <!-- <UseExperimentalWinui3>true</UseExperimentalWinui3> -->
     <ReactExperimentalFeaturesSet>true</ReactExperimentalFeaturesSet>
   </PropertyGroup>
 
